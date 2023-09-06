@@ -18,8 +18,8 @@ namespace EfCore.DatabaseFirst.DAL
             var configuration = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
             Configuration = configuration.Build();
 
-            OptionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
-            OptionsBuilder.UseSqlServer(Configuration.GetConnectionString("SqlCon"));
+            //OptionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
+            //OptionsBuilder.UseSqlServer(Configuration.GetConnectionString("SqlCon"));
         }
 
 
