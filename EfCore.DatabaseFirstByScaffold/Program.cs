@@ -1,11 +1,10 @@
 ﻿// See https://aka.ms/new-console-template for more information
-
-using EfCore.DatabaseFirst.DAL;
+using EfCore.DatabaseFirstByScaffold.Models;
 using Microsoft.EntityFrameworkCore;
 
-DbContextInitializer.Build();
+Console.WriteLine("Hello, World!");
 
-using (var _context = new AppDbContext())
+using (var _context = new EfCoreDatabaseFirstDbContext())
 {
     var products = await _context.Products.ToListAsync();
 
@@ -13,5 +12,4 @@ using (var _context = new AppDbContext())
     {
         Console.WriteLine($"{p.Id} : {p.Name} - {p.Price} - {p.Stock}");
     });
-    
 }
