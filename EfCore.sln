@@ -5,7 +5,9 @@ VisualStudioVersion = 17.7.34003.232
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EfCore.DatabaseFirst", "EfCore.DatabaseFirst\EfCore.DatabaseFirst.csproj", "{2F78AAAA-6462-4DA1-ABF9-6BDC7A8824E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EfCore.DatabaseFirstByScaffold", "EfCore.DatabaseFirstByScaffold\EfCore.DatabaseFirstByScaffold.csproj", "{7F6EB789-CD3D-46D7-BF1D-6BCF5E3BF91E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EfCore.DatabaseFirstByScaffold", "EfCore.DatabaseFirstByScaffold\EfCore.DatabaseFirstByScaffold.csproj", "{7F6EB789-CD3D-46D7-BF1D-6BCF5E3BF91E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EfCore.CodeFirst", "EfCore.CodeFirst\EfCore.CodeFirst.csproj", "{1095A49B-4A33-4552-B7F9-F748E32B0819}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{7F6EB789-CD3D-46D7-BF1D-6BCF5E3BF91E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F6EB789-CD3D-46D7-BF1D-6BCF5E3BF91E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F6EB789-CD3D-46D7-BF1D-6BCF5E3BF91E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1095A49B-4A33-4552-B7F9-F748E32B0819}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1095A49B-4A33-4552-B7F9-F748E32B0819}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1095A49B-4A33-4552-B7F9-F748E32B0819}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1095A49B-4A33-4552-B7F9-F748E32B0819}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
