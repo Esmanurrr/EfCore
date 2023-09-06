@@ -11,9 +11,12 @@ namespace EfCore.DatabaseFirst.DAL
     {
         public DbSet<Product> Products { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public AppDbContext()
         {
-            optionsBuilder.UseSqlServer("Data Source = .\\sqlexpress; Initial Catalog = EfCoreDatabaseFirstDb; Integrated Security = True; TrustServerCertificate = True;");
+        }
+
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+        {
         }
 
     }
