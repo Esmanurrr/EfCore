@@ -34,5 +34,11 @@ namespace EfCore.CodeFirst.DAL
 
             return base.SaveChanges();
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Product>().Property(x => x.Name).HasMaxLength(100);
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
