@@ -11,6 +11,7 @@ namespace EfCore.CodeFirst.DAL
     public class AppDbContext : DbContext
     {
         public DbSet<Product> Products { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -18,26 +19,15 @@ namespace EfCore.CodeFirst.DAL
             optionsBuilder.UseSqlServer(Initializer.Configuration.GetConnectionString("SqlCon"));
         }
 
-        public override int SaveChanges()
-        {
-
-            ChangeTracker.Entries().ToList().ForEach(e =>
-            {
-                if (e.Entity is Product p)
-                {
-                    if (e.State == EntityState.Added)
-                    {
-                        p.CreatedDate = DateTime.Now;
-                    }
-                }
-            });
-
-            return base.SaveChanges();
-        }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Product>().Property(x => x.Name).HasMaxLength(100);
+            //with fluent API - one-to-many
+            //modelBuilder.Entity<Category>().HasMany(x=>x.Products).WithOne(p => p.Category).HasForeignKey(x=>x.Category_Id);
+            //one-to-one
+            //modelBuilder.Entity<Product>().HasOne(x => x.ProductFeature).WithOne(x => x.Product).HasForeignKey<ProductFeature>(x => x.ProductId);
+            //bire çok ilişkide nereye foreign key konulacağı belliydi ama birebir ilişkide belli olmadığı için entity ile belirtiyoruz burada
+
+            
             base.OnModelCreating(modelBuilder);
         }
     }
