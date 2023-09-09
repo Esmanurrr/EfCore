@@ -26,8 +26,10 @@ namespace EfCore.CodeFirst.DAL
             //one-to-one
             //modelBuilder.Entity<Product>().HasOne(x => x.ProductFeature).WithOne(x => x.Product).HasForeignKey<ProductFeature>(x => x.ProductId);
             //bire çok ilişkide nereye foreign key konulacağı belliydi ama birebir ilişkide belli olmadığı için entity ile belirtiyoruz burada
+            //one-to-one 2. yöntem, child classın Id'sini hem primary hem de foreign key olarak  kullanmak
+            modelBuilder.Entity<Product>().HasOne(x => x.ProductFeature).WithOne(x => x.Product).HasForeignKey<ProductFeature>(x => x.Id);
 
-            
+
             base.OnModelCreating(modelBuilder);
         }
     }
