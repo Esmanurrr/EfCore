@@ -8,9 +8,9 @@ Console.WriteLine("Hello, World!");
 Initializer.Build();
 using (var _context = new AppDbContext())
 {
-    _context.Products.Add(new Product() { Name = "Kalem 43", Price = 100, Stock = 300, Barcode = 123 });
-    _context.Products.Add(new Product() { Name = "Kalem 57", Price = 100, Stock = 300, Barcode = 123 });
-    _context.Products.Add(new Product() { Name = "Kalem 62", Price = 100, Stock = 300, Barcode = 123 });
+    //_context.Products.Add(new Product() { Name = "Kalem 43", Price = 100, Stock = 300, Barcode = 123 });
+    //_context.Products.Add(new Product() { Name = "Kalem 57", Price = 100, Stock = 300, Barcode = 123 });
+    //_context.Products.Add(new Product() { Name = "Kalem 62", Price = 100, Stock = 300, Barcode = 123 });
 
     //_context.ChangeTracker.Entries().ToList().ForEach(e =>
     //{
