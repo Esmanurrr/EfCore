@@ -8,34 +8,24 @@ Console.WriteLine("Hello, World!");
 Initializer.Build();
 using (var _context = new AppDbContext())
 {
-    //_context.Products.Add(new Product() { Name = "Kalem 43", Price = 100, Stock = 300, Barcode = 123 });
-    //_context.Products.Add(new Product() { Name = "Kalem 57", Price = 100, Stock = 300, Barcode = 123 });
-    //_context.Products.Add(new Product() { Name = "Kalem 62", Price = 100, Stock = 300, Barcode = 123 });
+    var category = new Category { Name = "Defterler" };
 
-    //_context.ChangeTracker.Entries().ToList().ForEach(e =>
-    //{
-    //    if (e.Entity is Product p)
-    //    {
-    //        if(e.State == EntityState.Added)
-    //        {
-    //            p.CreatedDate = DateTime.Now;
-    //        }
-    //    }
-    //}); madem ki bu metodu savechangesten hemen önce track edilen entityler için kullanmam gerek, o zaman ben savechanges metodunu override edebilirim --> dbcontextte
+    //product üzerinden category ekleme :
+    //var product = new Product { Name = "Kalem 1", Price = 100, Stock = 200, Barcode = 123, Category = category };
 
+    //category üzerinden product ekleme :
+    category.Products.Add(new() { Name = "Defter 1", Price = 100, Stock = 200, Barcode = 123 });
+    category.Products.Add(new() { Name = "Defter 2", Price = 100, Stock = 200, Barcode = 123 });
 
-    Console.WriteLine($"Context Id : {_context.ContextId}");
+    /* Category varsa ekle yoksa hata fırlat
+     * var category = _context.Categories.First(x => x.Name = "Defterler");
+     * 
+     * var product = new Product { Name = "Kalem 1", Price = 100, Stock = 200, Barcode = 123, CategoryId = category.Id };
+     * 
+     * _context.Add(category);
+    */
 
-
-    //_context.SaveChanges();
-
-    //var product = await _context.Products.AsNoTracking().ToListAsync();
-    //Klasik yöntem
-    //product.ForEach(p =>
-    //{
-
-    //    Console.WriteLine($"{p.Id} : {p.Name} - {p.Price} - {p.Stock}");
-    //});
-
+    _context.Categories.Add(category);
+    _context.SaveChanges();
 
 }

@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EfCore.CodeFirst.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230910100416_initial")]
-    partial class initial
+    [Migration("20230910102541_initial2")]
+    partial class initial2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,27 +24,7 @@ namespace EfCore.CodeFirst.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("EfCore.CodeFirst.DAL.Student", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("Age")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Students");
-                });
-
-            modelBuilder.Entity("EfCore.CodeFirst.DAL.Teacher", b =>
+            modelBuilder.Entity("EfCore.CodeFirst.DAL.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -58,39 +38,54 @@ namespace EfCore.CodeFirst.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Teachers");
+                    b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("StudentTeacherManyToMany", b =>
+            modelBuilder.Entity("EfCore.CodeFirst.DAL.Product", b =>
                 {
-                    b.Property<int>("Student_Id")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("Teacher_Id")
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Barcode")
                         .HasColumnType("int");
 
-                    b.HasKey("Student_Id", "Teacher_Id");
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("Teacher_Id");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("StudentTeacherManyToMany");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("Stock")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("StudentTeacherManyToMany", b =>
+            modelBuilder.Entity("EfCore.CodeFirst.DAL.Product", b =>
                 {
-                    b.HasOne("EfCore.CodeFirst.DAL.Student", null)
-                        .WithMany()
-                        .HasForeignKey("Student_Id")
+                    b.HasOne("EfCore.CodeFirst.DAL.Category", "Category")
+                        .WithMany("Products")
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK__StudentId");
+                        .IsRequired();
 
-                    b.HasOne("EfCore.CodeFirst.DAL.Teacher", null)
-                        .WithMany()
-                        .HasForeignKey("Teacher_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK__TeacherId");
+                    b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("EfCore.CodeFirst.DAL.Category", b =>
+                {
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }
