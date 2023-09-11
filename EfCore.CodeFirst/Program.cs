@@ -21,9 +21,6 @@ using (var _context = new AppDbContext())
     //_context.Add(category);
 
     var category = _context.Categories.First();
-    var product = _context.Products.Where(x => x.CategoryId == category.Id).ToList();
-
-    _context.Products.RemoveRange(product);
 
     _context.Categories.Remove(category);
 
