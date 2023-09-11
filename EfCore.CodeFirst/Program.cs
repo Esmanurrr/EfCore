@@ -10,17 +10,23 @@ using (var _context = new AppDbContext())
 {
     //var category = new Category()
     //{
-    //    Name = "Defterler",
+    //    Name = "Kalemler",
     //    Products = new()
     //    {
-    //        new() {Name="Defter 1", Price =100, Stock=200, Barcode = 123},
-    //        new() {Name="Defter 2", Price =100, Stock=200, Barcode = 123},
-    //        new() {Name="Defter 3", Price =100, Stock=200, Barcode = 123}
+    //        new() {Name="Kalem 1", Price =100, Stock=200, Barcode = 123},
+    //        new() {Name="Kalem 2", Price =100, Stock=200, Barcode = 123},
+    //        new() {Name="Kalem 3", Price =100, Stock=200, Barcode = 123}
     //    }
     //};
+    //_context.Add(category);
 
     var category = _context.Categories.First();
+    var product = _context.Products.Where(x => x.CategoryId == category.Id).ToList();
+
+    _context.Products.RemoveRange(product);
+
     _context.Categories.Remove(category);
+
 
     _context.SaveChanges();
 
