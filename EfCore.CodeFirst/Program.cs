@@ -8,24 +8,16 @@ Console.WriteLine("Hello, World!");
 Initializer.Build();
 using (var _context = new AppDbContext())
 {
-    var category = new Category { Name = "Defterler" };
+    //Product => Parent 
+    //ProductFeature => Child
+    //1. yöntem
+    var category = _context.Categories.First(x => x.Name == "Silgiler");
+    var product = new Product { Name = "Silgi", Price = 100, Stock = 200, Barcode = 321, Category = category };
 
-    //product üzerinden category ekleme :
-    //var product = new Product { Name = "Kalem 1", Price = 100, Stock = 200, Barcode = 123, Category = category };
+    ProductFeature productFeature = new () { Color = "Blue", Height=200, Width=200, Product=product};
 
-    //category üzerinden product ekleme :
-    category.Products.Add(new() { Name = "Defter 1", Price = 100, Stock = 200, Barcode = 123 });
-    category.Products.Add(new() { Name = "Defter 2", Price = 100, Stock = 200, Barcode = 123 });
-
-    /* Category varsa ekle yoksa hata fırlat
-     * var category = _context.Categories.First(x => x.Name = "Defterler");
-     * 
-     * var product = new Product { Name = "Kalem 1", Price = 100, Stock = 200, Barcode = 123, CategoryId = category.Id };
-     * 
-     * _context.Add(category);
-    */
-
-    _context.Categories.Add(category);
-    _context.SaveChanges();
+    _context.Add(productFeature);
+    _context.SaveChanges(); 
+    Console.WriteLine("Kaydedildi");
 
 }
