@@ -69,78 +69,6 @@ namespace EfCore.CodeFirst.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("EfCore.CodeFirst.DAL.ProductFeature", b =>
-                {
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Color")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Height")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Width")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ProductFeatures");
-                });
-
-            modelBuilder.Entity("EfCore.CodeFirst.DAL.Student", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("Age")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Students");
-                });
-
-            modelBuilder.Entity("EfCore.CodeFirst.DAL.Teacher", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Teachers");
-                });
-
-            modelBuilder.Entity("StudentTeacher", b =>
-                {
-                    b.Property<int>("StudentsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TeachersId")
-                        .HasColumnType("int");
-
-                    b.HasKey("StudentsId", "TeachersId");
-
-                    b.HasIndex("TeachersId");
-
-                    b.ToTable("StudentTeacher");
-                });
-
             modelBuilder.Entity("EfCore.CodeFirst.DAL.Product", b =>
                 {
                     b.HasOne("EfCore.CodeFirst.DAL.Category", "Category")
@@ -152,41 +80,9 @@ namespace EfCore.CodeFirst.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("EfCore.CodeFirst.DAL.ProductFeature", b =>
-                {
-                    b.HasOne("EfCore.CodeFirst.DAL.Product", "Product")
-                        .WithOne("ProductFeature")
-                        .HasForeignKey("EfCore.CodeFirst.DAL.ProductFeature", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("StudentTeacher", b =>
-                {
-                    b.HasOne("EfCore.CodeFirst.DAL.Student", null)
-                        .WithMany()
-                        .HasForeignKey("StudentsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EfCore.CodeFirst.DAL.Teacher", null)
-                        .WithMany()
-                        .HasForeignKey("TeachersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("EfCore.CodeFirst.DAL.Category", b =>
                 {
                     b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("EfCore.CodeFirst.DAL.Product", b =>
-                {
-                    b.Navigation("ProductFeature")
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

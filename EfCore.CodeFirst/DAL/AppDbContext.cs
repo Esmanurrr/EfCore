@@ -11,10 +11,10 @@ namespace EfCore.CodeFirst.DAL
     public class AppDbContext : DbContext
     {
         public DbSet<Product> Products { get; set; }
-        public DbSet<ProductFeature> ProductFeatures { get; set; }
+        //public DbSet<ProductFeature> ProductFeatures { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<Student> Students { get; set; }
-        public DbSet<Teacher> Teachers { get; set; }
+        //public DbSet<Student> Students { get; set; }
+        //public DbSet<Teacher> Teachers { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -24,7 +24,7 @@ namespace EfCore.CodeFirst.DAL
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-             
+            modelBuilder.Entity<Category>().HasMany(x => x.Products).WithOne(x => x.Category).HasForeignKey(x => x.CategoryId).OnDelete(DeleteBehavior.Cascade);
 
             base.OnModelCreating(modelBuilder);
         }

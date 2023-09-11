@@ -24,7 +24,7 @@ namespace EfCore.CodeFirst.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Productss",
+                name: "Products",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -37,9 +37,9 @@ namespace EfCore.CodeFirst.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Productss", x => x.Id);
+                    table.PrimaryKey("PK_Products", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Productss_Categories_CategoryId",
+                        name: "FK_Products_Categories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "Id",
@@ -47,8 +47,8 @@ namespace EfCore.CodeFirst.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Productss_CategoryId",
-                table: "Productss",
+                name: "IX_Products_CategoryId",
+                table: "Products",
                 column: "CategoryId");
         }
 
@@ -56,7 +56,7 @@ namespace EfCore.CodeFirst.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Productss");
+                name: "Products");
 
             migrationBuilder.DropTable(
                 name: "Categories");
