@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -11,16 +12,13 @@ namespace EfCore.CodeFirst.DAL
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        [Precision(18,2)]
         public decimal Price { get; set; }
-        public int Kdv { get; set; }
         public int Stock { get; set; }
         public int Barcode { get; set; }
-
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public decimal PriceKdv { get; set; }
-        //public int? CategoryId { get; set; }
-        //public Category? Category { get; set; }
-        //public ProductFeature ProductFeature { get; set; }
+        public int? CategoryId { get; set; }
+        public Category? Category { get; set; }
+        public ProductFeature ProductFeature { get; set; }
 
     }
 }
