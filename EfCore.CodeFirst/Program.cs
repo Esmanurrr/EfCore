@@ -8,28 +8,18 @@ Console.WriteLine("Hello, World!");
 Initializer.Build();
 using (var _context = new AppDbContext())
 {
-    //category üzerinden getirme
-    //var category = _context.Categories.First();
-    ////
-    ////
-    ////
-    //if (true)
-    //{
-    //    _context.Entry(category).Collection(x => x.Products).Load();
-    //    category.Products.ForEach(product =>
-    //    {
-    //        Console.WriteLine(product.Name);
-    //    });
-    //};
+    
+    var category = await _context.Categories.FirstAsync();
 
-    var product = _context.Products.First();
-    //
-    //
-    //
-    if (true)
+    Console.WriteLine("Category çekildi");
+
+    var products = category.Products;
+
+    Console.WriteLine("Products çekildi");
+
+    foreach(var item in products)
     {
-        _context.Entry(product).Reference(x => x.ProductFeature).Load();
-        
+        var productFeature = item.ProductFeature;
     };
 
     Console.WriteLine("İşlem bitti.");

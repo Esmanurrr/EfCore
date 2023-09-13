@@ -19,7 +19,7 @@ namespace EfCore.CodeFirst.DAL
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             Initializer.Build();
-            optionsBuilder.UseSqlServer(Initializer.Configuration.GetConnectionString("SqlCon"));
+            optionsBuilder.LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information).UseLazyLoadingProxies().UseSqlServer(Initializer.Configuration.GetConnectionString("SqlCon"));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
